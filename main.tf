@@ -83,3 +83,8 @@ module "api_gateway" {
   lambda_update_course_arn   = module.lambda_update_course.function_arn
   lambda_delete_course_arn   = module.lambda_delete_course.function_arn
 }
+
+module "s3_frontend" {
+  source      = "./modules/s3_frontend"
+  bucket_name = "${module.label.id}-frontend-bucket"
+}

@@ -1,7 +1,13 @@
-# Створюємо сам API Gateway
 resource "aws_apigatewayv2_api" "this" {
   name          = "${var.name_prefix}-api"
   protocol_type = "HTTP"
+
+  # Додаємо CORS
+  cors_configuration {
+    allow_headers = ["Content-Type", "Authorization", "X-Amz-Date", "X-Api-Key", "X-Amz-Security-Token"]
+    allow_methods = ["OPTIONS", "GET", "POST", "PUT", "DELETE"]
+    allow_origins = ["*"] 
+  }
 }
 
 # Створюємо stage (середовище), щоб API автоматично розгорталося
