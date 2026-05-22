@@ -16,3 +16,10 @@ resource "aws_lambda_function" "this" {
     variables = { TABLE_NAME = var.target_table_name }
   }
 }
+
+resource "aws_lambda_permission" "api_gateway" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.this.function_name
+  principal     = "apigateway.amazonaws.com"
+}

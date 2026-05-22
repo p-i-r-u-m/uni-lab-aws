@@ -72,3 +72,14 @@ module "lambda_delete_course" {
   role_arn          = module.iam_lambda.role_arn
   target_table_name = module.dynamodb_courses.table_name
 }
+
+module "api_gateway" {
+  source                     = "./modules/api_gateway"
+  name_prefix                = module.label.id
+  lambda_get_all_authors_arn = module.lambda_get_all_authors.function_arn
+  lambda_get_all_courses_arn = module.lambda_get_all_courses.function_arn
+  lambda_get_course_arn      = module.lambda_get_course.function_arn
+  lambda_save_course_arn     = module.lambda_save_course.function_arn
+  lambda_update_course_arn   = module.lambda_update_course.function_arn
+  lambda_delete_course_arn   = module.lambda_delete_course.function_arn
+}
