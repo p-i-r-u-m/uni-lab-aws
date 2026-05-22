@@ -88,3 +88,9 @@ module "s3_frontend" {
   source      = "./modules/s3_frontend"
   bucket_name = "${module.label.id}-frontend-bucket"
 }
+
+module "monitoring" {
+  source               = "./modules/monitoring"
+  email_address        = "ivan.hrushevskyi.ri.2024@lpnu.ua" # ВПИШИ СЮДИ СВОЮ ПОШТУ
+  lambda_function_name = module.lambda_get_all_courses.function_name
+}
